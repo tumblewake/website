@@ -176,7 +176,7 @@ Make one commit per part (switches, abilities, ability UI, camera), so any part 
 ## Website copy to update once the cut is final (not yet)
 
 - `sumo-arena.html` line 7: the meta description says "level up five abilities".
-- `sumo-arena.html` lines 113–130: the "Level up" section and the `ability-menu.jpg` screenshot, which shows levels and an upgrade button.
+- `sumo-arena.html` lines 113–131: the "Level up" section and the `ability-menu.jpg` screenshot, which shows levels and an upgrade button.
 - `support.html` lines 97–98: "How do I get chests and level up?"
 - `support.html` line 82 and `privacy.html` line 47 list "ability levels" as saved data. That stays true while saves keep them.
 
