@@ -258,6 +258,11 @@ li + li { margin-top: 0.35em; }
 @media (max-width: 440px) {
   .band .nav a { padding: 7px 11px; font-size: 0.92rem; }
 }
+/* On a 375px phone the four pills need a few px less to share one row. */
+@media (max-width: 400px) {
+  .nav ul { gap: 4px; }
+  .band .nav a { padding: 6px 9px; font-size: 0.9rem; }
+}
 
 /* ---------- Hero areas ---------- */
 
@@ -445,7 +450,8 @@ li + li { margin-top: 0.35em; }
 }
 
 .lift { margin-top: -40px; position: relative; }
-.lift .shot { border-width: 6px; }
+/* Capped so the 1400px picture stays sharp on a Retina desktop. */
+.lift .shot { max-width: 920px; margin-inline: auto; border-width: 6px; }
 
 .caption {
   margin-top: 12px;
@@ -514,10 +520,20 @@ li + li { margin-top: 0.35em; }
 
 /* ---------- Modes ---------- */
 
+/* Five cards: one column on a phone, two by two plus a full-width last
+   card on a tablet, three over two on a desktop, so no row has a hole. */
 .modes {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+@media (min-width: 640px) {
+  .modes { grid-template-columns: 1fr 1fr; }
+  .mode:last-child { grid-column: 1 / -1; }
+}
+@media (min-width: 960px) {
+  .modes { grid-template-columns: repeat(6, 1fr); }
+  .mode { grid-column: span 2; }
+  .mode:nth-child(n+4) { grid-column: span 3; }
 }
 
 .mode {
@@ -567,8 +583,19 @@ li + li { margin-top: 0.35em; }
 .mode.gold .mode-head { background: #ffc629; color: #1d1a3a; }
 .mode.gold .mode-badge { border-color: #1d1a3a; background: rgba(255, 255, 255, 0.35); }
 
-/* A one-line note under a group of cards (the Shield and Jump, the arenas
-   and bots). */
+/* The Shield and the Jump: two plain lines under the wrestler cards. */
+.also {
+  display: grid;
+  gap: 6px 32px;
+  margin-top: 24px;
+  font-size: 1.05rem;
+}
+.also p { margin: 0; }
+@media (min-width: 760px) {
+  .also { grid-template-columns: 1fr 1fr; }
+}
+
+/* A one-line note under the mode cards (the arenas and bots). */
 .note-box {
   margin-top: 28px;
   padding: 18px 22px;
@@ -600,8 +627,8 @@ li + li { margin-top: 0.35em; }
 .facts {
   display: grid;
   gap: 14px;
-  /* 300px: six tiles sit three by two on a desktop, two by three on a
-     tablet and in one column on a phone, never a short last row. */
+  /* 300px: six tiles sit three by two on a desktop and two by three on a
+     tablet, never a short last row. Phones get two columns (below). */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   margin: 0;
   padding: 0;
@@ -622,6 +649,11 @@ li + li { margin-top: 0.35em; }
   font-weight: 800;
 }
 .facts svg { flex: none; width: 28px; height: 28px; color: var(--gold); }
+@media (max-width: 559px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .facts li { gap: 8px; padding: 12px; font-size: 0.98rem; line-height: 1.25; }
+  .facts svg { width: 22px; height: 22px; }
+}
 
 /* ---------- Gallery ---------- */
 
@@ -776,9 +808,13 @@ li + li { margin-top: 0.35em; }
 
 /* ---------- Footer ---------- */
 
+/* The last section's own padding plus the footer's margin make the gap
+   above the footer. */
+main > .section:last-child { padding-bottom: 40px; }
+
 .site-footer {
   flex-grow: 1;
-  margin-top: 80px;
+  margin-top: 40px;
   padding-block: 44px 36px;
   border-top: 6px solid var(--gold);
   background: var(--footer);
@@ -843,5 +879,11 @@ li + li { margin-top: 0.35em; }
   .band::before { display: none; }
 }
 
-/* Keeps a short phrase on one line, so a card never ends on one lone word. */
+/* Keeps a short phrase on one line, so a card never ends on one lone word
+   and a hyphenated word (S-Gun, in-app, sign-in) never splits at its hyphen. */
 .nowrap { white-space: nowrap; }
+
+/* Words left out on a phone, so a pill stays on one line. */
+@media (max-width: 479px) {
+  .wide-only { display: none; }
+}
