@@ -838,3 +838,6 @@ li + li { margin-top: 0.35em; }
 @media (max-width: 600px) {
   .band::before { display: none; }
 }
+
+/* Keeps a short phrase on one line, so a card never ends on one lone word. */
+.nowrap { white-space: nowrap; }
