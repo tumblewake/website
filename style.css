@@ -567,7 +567,9 @@ li + li { margin-top: 0.35em; }
 .mode.gold .mode-head { background: #ffc629; color: #1d1a3a; }
 .mode.gold .mode-badge { border-color: #1d1a3a; background: rgba(255, 255, 255, 0.35); }
 
-.bots-line {
+/* A one-line note under a group of cards (the Shield and Jump, the arenas
+   and bots). */
+.note-box {
   margin-top: 28px;
   padding: 18px 22px;
   border-left: 6px solid var(--gold);
@@ -598,7 +600,9 @@ li + li { margin-top: 0.35em; }
 .facts {
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  /* 300px: six tiles sit three by two on a desktop, two by three on a
+     tablet and in one column on a phone, never a short last row. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   margin: 0;
   padding: 0;
   list-style: none;
